@@ -28,6 +28,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/bkafirongo/devsecopsdemo/controller/NumericControllerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../whatsapp-api/src/main/java/com/bkafirongo/whatsappapi/service/MyRunner.java">
           <value>
             <set />
