@@ -11,37 +11,33 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class NumericController {
 
-    private static final String baseURL = "http://node-service:5000/plusone";
+    private static final String baseUrl = "http://node-service:5000/plusone";
 
     RestTemplate restTemplate = new RestTemplate();
 
-    @RestController
-    public class compare {
+    @GetMapping("/")
+    public String welcome() {
+        return "Kubernetes DevSecOps";
+    }
 
-        @GetMapping("/")
-        public String welcome() {
-            return "Kubernetes DevSecOps";
+    @GetMapping("/compare/{value}")
+    public String compareToFifty(@PathVariable int value) {
+        String message;
+        if (value > 50) {
+            message = "Greater than 50";
+        } else {
+            message = "Smaller than or equal to 50";
         }
+        return message;
+    }
 
-        @GetMapping("/compare/{value}")
-        public String compareToFifty(@PathVariable int value) {
-            String message;
-            if (value > 50) {
-                message = "Greater than 50";
-            } else {
-                message = "Smaller than or equal to 50";
-            }
-            return message;
-        }
-
-        @GetMapping("/increment/{value}")
-        public int increment(@PathVariable int value) {
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity(baseURL + '/' + value, String.class);
-            String response = responseEntity.getBody();
-            log.info("Value Received in Request - {}", value);
-            log.info("Node Service Response - {}", response);
-            return Integer.parseInt(response);
-        }
+    @GetMapping("/increment/{value}")
+    public int increment(@PathVariable int value) {
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(baseUrl + '/' + value, String.class);
+        String response = responseEntity.getBody();
+        log.info("Value Received in Request - {}", value);
+        log.info("Node Service Response - {}", response);
+        return Integer.parseInt(response);
     }
 
 }
